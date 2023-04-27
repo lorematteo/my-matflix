@@ -49,7 +49,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
         scale-0
         group-hover:scale-110
         group-hover:-translate-y-[6vw]
-        group-hover:translate-x-[2vw]
+        group-hover:translate-x-[1vw]
         group-hover:opacity-100
       ">
         <img
