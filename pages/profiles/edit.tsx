@@ -66,7 +66,7 @@ const EditProfile = () => {
       });
     }
     router.push('/profiles');
-  }, [name, image, currentUser, mutate])
+  }, [name, image, currentUser, router, mutate])
 
   return (
     <div className="p-20">

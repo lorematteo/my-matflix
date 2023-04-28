@@ -69,8 +69,8 @@ const Profiles = () => {
   }, [router])
 
   const toggleEditMode = useCallback(() => {
-    setEditMode((current) => !current);
-  }, [editMode]);
+    setEditMode((current) => !!current);
+  }, []);
 
   return (
     <div className="flex items-center h-full justify-center">
