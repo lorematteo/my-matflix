@@ -69,7 +69,7 @@ const Profiles = () => {
   }, [router])
 
   const toggleEditMode = useCallback(() => {
-    setEditMode((current) => !!current);
+    setEditMode((current) => !current);
   }, []);
 
   return (
