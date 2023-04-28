@@ -70,3 +70,9 @@ model Movie {
   genre String
   duration String
 }
+
+model Set {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  images String[]
+}
