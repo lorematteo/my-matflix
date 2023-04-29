@@ -6,9 +6,11 @@ import Input from "@/components/input";
 
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
+import { useRouter } from "next/router";
 
 
 const Auth = () => {
+  const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -16,23 +18,34 @@ const Auth = () => {
 
   const [variant, setVariant] = useState('login');
 
+  const [error, setError] = useState('');
+
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login')
   }, []);
 
   const login = useCallback(async () => {
+    setError('');
     try {
       await signIn('credentials', {
+        redirect: false,
         email,
         password,
-        callbackUrl: '/profiles',
-      });
+      })
+      .then(( response ) => {
+        if(response?.ok){
+          router.push('/profiles');
+        } else {
+          setError(response?.error || 'unknown error');
+        }
+      })
     } catch (error) {
       console.log(error);
     }
-  }, [email, password]);
+  }, [email, password, router]);
 
   const register = useCallback(async () => {
+    setError('');
     try {
       await axios.post('/api/register', {
         email,
@@ -42,7 +55,12 @@ const Auth = () => {
 
       login();
     } catch (error) {
-      console.log(error);
+      if (axios.isAxiosError(error)) {
+        setError(error.response?.data.error);
+      } else {
+        console.error(error);
+        setError('unknown error');
+      }
     }
   }, [email, name, password, login]);
 
@@ -81,6 +99,9 @@ const Auth = () => {
                 type="password"
               />
             </div>
+            {error != '' && (
+              <p className="text-white opacity-90 pt-2">{error}</p>
+            )}
             <button onClick={variant === 'login' ? login : register} className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
               {variant === 'login' ? 'Login' : 'Sign Up'}
             </button>
