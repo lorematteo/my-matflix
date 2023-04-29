@@ -138,9 +138,9 @@ const MovieCard: React.FC<MovieCardProps> = ({
           </div>
 
           <div className="flex flex-row mt-4 gap-2 items-center">
-            {data.genre.map((genre:string) => {
+            {data.genre.map((genre:string, index:number) => {
               return (
-                <p className="text-white text-[10px] md:text-xs xl:text-sm 2xl:text-base opacity-80">{genre}</p>
+                <p key={index} className="text-white text-[10px] md:text-xs xl:text-sm 2xl:text-base opacity-80">{genre}</p>
               )
             })}
           </div>

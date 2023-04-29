@@ -150,9 +150,9 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
             <div className="flex flex-row justify-between mt-8">
               <p className="text-white text-lg">{data?.description}</p>
               <div className="flex flex-col gap-2 items-end ml-10">
-                {data?.genre?.map((genre:string) => {
+                {data?.genre?.map((genre:string, index:number) => {
                   return (
-                    <button className="opacity-60 text-white text-lg transition hover:underline">{genre}</button>
+                    <button key={index} className="opacity-60 text-white text-lg transition hover:underline">{genre}</button>
                   )
                 })}
               </div>
