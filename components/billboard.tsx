@@ -14,13 +14,15 @@ const Billboard = () => {
   }, [openModal, data?.id])
 
   return (
-    <div className="relative max-h-[56.25vw]">
+    <div className="relative h-[44vw]">
       <video
         className="
+          relative
           w-full
-          max-h-[56.25vw]
+          h-[47vw]
           object-cover
           brightness-[60%]
+          z-0
         "
         autoPlay
         muted
@@ -32,7 +34,7 @@ const Billboard = () => {
         <p className="text-white text-1xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-xl">
           {data?.title}
         </p>
-        <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[50%] drop-shadow-xl">
+        <p className="text-white text-[8px] md:text-sm lg:text-lg mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[50%] drop-shadow-xl">
           {data?.description}
         </p>
         <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
@@ -60,6 +62,7 @@ const Billboard = () => {
           </button>
         </div>
       </div>
+      <div className="relative -top-16 h-16 bg-gradient-to-b from-transparent to-zinc-900"/>
     </div>
   )
 }

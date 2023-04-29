@@ -16,24 +16,30 @@ const MovieCard: React.FC<MovieCardProps> = ({
   const router = useRouter();
   const { openModal } = useInfoModal();
 
+  const watchMovie = () => {
+    router.push(`/watch/${data?.id}`)
+  };
+
   return (
-    <div className="group bg-zinc-900 col-span relative h-[12vw]">
-      <img 
-      className="
-        cursor-pointer
-        object-cover
-        transition
-        duration
-        shadow-xl
-        rounded-md
-        group-hover:opacity-90
-        sm:group-hover:opacity-0
-        delay-300
-        w-full
-        h-[12vw]
-      "
-      src={data.thumbnailUrl}
-      alt="Thumbail" />
+    <div className="group bg-zinc-900 col-span relative h-[12vw] flex justify-center items-center">
+      <div onClick={watchMovie}>
+        <img 
+        className="
+          cursor-pointer
+          object-cover
+          transition
+          duration
+          shadow-xl
+          rounded-md
+          group-hover:opacity-90
+          sm:group-hover:opacity-0
+          delay-300
+          w-full
+          h-[12vw]
+        "
+        src={data.thumbnailUrl}
+        alt="Thumbail" />
+      </div>
       <div
       className="
         opacity-0
@@ -49,21 +55,22 @@ const MovieCard: React.FC<MovieCardProps> = ({
         scale-0
         group-hover:scale-110
         group-hover:-translate-y-[6vw]
-        group-hover:translate-x-[1vw]
         group-hover:opacity-100
       ">
-        <img
-        className="
-          cursoir-pointer
-          object-cover
-          transition
-          duration
-          shadow-xl
-          rounder-t-md
-          w-full
-          h-[12vw]
-        "
-        src={data.thumbnailUrl} alt="Thumbnail" />
+        <div onClick={watchMovie}>
+          <img
+          className="
+            cursor-pointer
+            object-cover
+            transition
+            duration
+            shadow-xl
+            rounder-t-md
+            w-full
+            h-[12vw]
+          "
+          src={data.thumbnailUrl} alt="Thumbnail" />
+        </div>
         <div
         className="
           z-10
@@ -93,8 +100,8 @@ const MovieCard: React.FC<MovieCardProps> = ({
               transition
               hover:bg-neutral-300
             "
-            onClick={() => router.push(`/watch/${data?.id}`)}>
-              <BsFillPlayFill size={30}/>
+            onClick={watchMovie}>
+              <BsFillPlayFill className="w-4 h-4 lg:w-7 lg:h-7"/>
             </div>
             <FavoriteButton movieId={data?.id} />
             <div
@@ -115,24 +122,41 @@ const MovieCard: React.FC<MovieCardProps> = ({
               hover:border-neutral-300"
             >
               <BiChevronDown
-              size={30}
-              className="text-white group-hover/item:text-neutral-300"
+              className="w-4 h-4 lg:w-7 lg:h-7 text-white group-hover/item:text-neutral-300"
               />
             </div>
           </div>
 
-          <p className="text-green-400 font-semibold mt-4">
-            New <span className="text-white">2023</span>
-          </p>
+          <div className="flex flex-row justify-between">
+            <p className="text-green-400 font-semibold mt-4 text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-lg">
+              New <span className="text-white">{data.title}, {data.release}</span>
+            </p>
+            <div className="flex flex-row mt-4 gap-2 items-center">
+              <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
+            </div>
+          </div>
 
           <div className="flex flex-row mt-4 gap-2 items-center">
-            <p className="text-white text-[10px] lg:text-sm">{data.genre}</p>
-          </div>
-          <div className="flex flex-row mt-4 gap-2 items-center">
-            <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
+            {data.genre.map((genre:string) => {
+              return (
+                <p className="text-white text-[10px] md:text-xs xl:text-sm 2xl:text-base">{genre}</p>
+              )
+            })}
           </div>
         </div>
       </div>
+      <img
+      className="
+        absolute
+        flex
+        w-3/4
+        h-1/2
+        object-scale-down
+        pointer-events-none
+      "
+      src={data.logoUrl}
+      alt="Logo"
+      />
     </div>
   )
 }
