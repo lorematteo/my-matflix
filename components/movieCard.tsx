@@ -5,6 +5,7 @@ import { BsFillPlayFill } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
 import FavoriteButton from "./favoriteButton";
 import useInfoModal from "@/hooks/useInfoModal";
+import isWeeklyNew from "@/lib/isWekklyNew";
 
 interface MovieCardProps {
   data: Record<string, any>;
@@ -129,7 +130,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
 
           <div className="flex flex-row justify-between">
             <p className="text-green-400 font-semibold mt-4 text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-lg">
-              New <span className="text-white">{data.title}, {data.release}</span>
+              {isWeeklyNew(data?.createdAt) ? 'New ' : ''}<span className="text-white">{data.title}, {data.release}</span>
             </p>
             <div className="flex flex-row mt-4 gap-2 items-center">
               <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
@@ -139,7 +140,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
           <div className="flex flex-row mt-4 gap-2 items-center">
             {data.genre.map((genre:string) => {
               return (
-                <p className="text-white text-[10px] md:text-xs xl:text-sm 2xl:text-base">{genre}</p>
+                <p className="text-white text-[10px] md:text-xs xl:text-sm 2xl:text-base opacity-80">{genre}</p>
               )
             })}
           </div>
