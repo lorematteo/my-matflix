@@ -65,8 +65,18 @@ model Movie {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   description String
+  release String
   videoUrl String
   thumbnailUrl String
-  genre String
+  logoUrl String
+  genre String[]
   duration String
+  hd Boolean
+  createdAt DateTime @default(now())
+}
+
+model Set {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  images String[]
 }
