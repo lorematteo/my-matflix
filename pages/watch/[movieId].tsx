@@ -13,11 +13,13 @@ const Watch = () => {
 
   return (
     <div className="h-screen w-screen bg-black">
-      <nav className="fixed w-full p-4 z-10 flex flex-row items-center gap-8 bg-black bg-opacity-70">
-        <AiOutlineArrowLeft onClick={() => router.push('/')} className="text-white cursor-pointer" size={40}/>
-        <p className="text-white text-1xl md:text-3xl font-bold">
+      <nav className="fixed w-full p-4 z-10 flex flex-row items-center gap-4 md:gap-8 bg-black bg-opacity-70">
+        <div onClick={() => router.push('/')} className="cursor-pointer p-2 md:pt-3">
+          <AiOutlineArrowLeft className="text-white w-5 h-5 md:w-7 md:h-7"/>
+        </div>
+        <p className="text-white text-sm md:text-2xl font-bold">
           <span className="font-light">
-            Watching:
+            {'Watching : '}
           </span>
           {data?.title}
         </p>
