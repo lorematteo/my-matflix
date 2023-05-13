@@ -1,7 +1,7 @@
 import useInfoModal from "@/hooks/useInfoModal";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
 import InfoModal from "./infoModal";
 import MovieCard from "./movieCard";
@@ -24,15 +24,15 @@ const AddNewMovie = () => {
   const [loading, setLoading] = useState(false);
   const [published, setPublished] = useState(false);
 
-  const getGenres = () => {
+  const getGenres = useCallback(() => {
     let genre = genres.split(',')
     genre.forEach((g, index) =>
       genre[index] = g.trim()
     )
     return genre;
-  }
+  }, [genres])
 
-  const preview = {
+  const preview = useMemo(() => ({
     "title": title ? title : "Title",
     "description": description ? description : "Description",
     "release": release ? release : "2018",
@@ -42,7 +42,7 @@ const AddNewMovie = () => {
     "genre": getGenres(),
     "duration": duration,
     "hd": hd,
-  }
+  }), [title, description, video, duration, hd, logo, release, thumbnail, getGenres]);
 
   const sendMovie = useCallback(async () => {
     try {
@@ -54,7 +54,7 @@ const AddNewMovie = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [preview]);
+  }, [preview, router]);
   
   return (
     <>
