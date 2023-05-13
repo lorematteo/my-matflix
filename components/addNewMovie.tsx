@@ -1,11 +1,14 @@
 import useInfoModal from "@/hooks/useInfoModal";
-import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useCallback, useState } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
 import InfoModal from "./infoModal";
 import MovieCard from "./movieCard";
 import WhiteInput from "./whiteInput";
 
 const AddNewMovie = () => {
+  const router = useRouter();
   const { isOpen, closeModal } = useInfoModal();
 
   const [title, setTitle] = useState("");
@@ -18,6 +21,9 @@ const AddNewMovie = () => {
   const [logo, setLogo] = useState("");
   const [hd, setHd] = useState(true);
 
+  const [loading, setLoading] = useState(false);
+  const [published, setPublished] = useState(false);
+
   const getGenres = () => {
     let genre = genres.split(',')
     genre.forEach((g, index) =>
@@ -27,7 +33,6 @@ const AddNewMovie = () => {
   }
 
   const preview = {
-    "id": "",
     "title": title ? title : "Title",
     "description": description ? description : "Description",
     "release": release ? release : "2018",
@@ -35,10 +40,21 @@ const AddNewMovie = () => {
     "thumbnailUrl": thumbnail ? thumbnail : '/images/hero.jpg',
     "logoUrl": logo ? logo : '/images/logo.png',
     "genre": getGenres(),
-    "duration": duration ? duration : "2h20",
+    "duration": duration,
     "hd": hd,
-    "createdAt": ""
   }
+
+  const sendMovie = useCallback(async () => {
+    try {
+      setLoading(true);
+      await axios.post('/api/admin/addMovie', {data: preview});
+      setLoading(false);
+      setPublished(true);
+      router.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [preview]);
   
   return (
     <>
@@ -103,15 +119,25 @@ const AddNewMovie = () => {
           </div>
         </div>
         <div className="flex justify-end mt-8">
-          <div onClick={() => {}} className="group text-center">
-            <p className='
-              text-white
-              bg-red-600
-              text-xl
-              px-6 py-2
-              group-hover:bg-red-700
-              group-hover:cursor-pointer
-            '>Submit</p>
+          <div onClick={sendMovie} className={`
+            justify-center
+            items-center
+            text-center
+            text-white
+            ${published ? 'bg-green-400' : 'bg-red-600'}
+            text-xl
+            px-6 py-2
+            ${published ? 'hover:bg-green-500' : 'hover:bg-red-700'}
+            hover:cursor-pointer
+          `}>
+          {loading ?
+            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            :
+            <p>{published ? 'Done !' : 'Submit'}</p>
+          }
           </div>
         </div>
       </div>
