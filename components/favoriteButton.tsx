@@ -8,9 +8,10 @@ import { AiOutlineCheck, AiOutlinePlus } from "react-icons/ai";
 
 interface FavoriteButtonProps {
   movieId: string;
+  preview?: boolean;
 }
 
-const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
+const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId, preview }) => {
   const { mutate: mutateFavorites } = useFavorites();
   const { data: currentUser, mutate } = useCurrentUser();
 
@@ -21,6 +22,8 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
   }, [currentUser, movieId]);
 
   const toggleFavorites = useCallback(async () => {
+    if(preview) return;
+    
     let response;
 
     if(isFavorite){
@@ -37,7 +40,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
     });
 
     mutateFavorites();
-  }, [movieId, isFavorite, currentUser, mutate, mutateFavorites])
+  }, [preview, movieId, isFavorite, currentUser, mutate, mutateFavorites])
 
   const Icon = isFavorite ? AiOutlineCheck : AiOutlinePlus;
 

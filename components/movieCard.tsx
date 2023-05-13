@@ -1,23 +1,25 @@
-import React from "react";
 import { useRouter } from "next/router";
+import React from "react";
 
-import { BsFillPlayFill } from "react-icons/bs";
-import { BiChevronDown } from "react-icons/bi";
-import FavoriteButton from "./favoriteButton";
 import useInfoModal from "@/hooks/useInfoModal";
 import isWeeklyNew from "@/lib/isWekklyNew";
+import { BiChevronDown } from "react-icons/bi";
+import { BsFillPlayFill } from "react-icons/bs";
+import FavoriteButton from "./favoriteButton";
 
 interface MovieCardProps {
   data: Record<string, any>;
+  preview?: boolean;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({
-  data
+  data, preview
 }) => {
   const router = useRouter();
   const { openModal } = useInfoModal();
 
   const watchMovie = () => {
+    if(!preview)
     router.push(`/watch/${data?.id}`)
   };
 
@@ -104,7 +106,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
             onClick={watchMovie}>
               <BsFillPlayFill className="w-4 h-4 lg:w-7 lg:h-7"/>
             </div>
-            <FavoriteButton movieId={data?.id} />
+            <FavoriteButton movieId={data?.id} preview={preview}/>
             <div
             onClick={() => openModal(data?.id)}
             className="
