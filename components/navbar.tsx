@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 
-import MobileMenu from "./mobileMenu";
 import AccountMenu from "./accountMenu";
+import MobileMenu from "./mobileMenu";
 import NavbarItem from "./navbaritem";
 
-import { BsChevronDown } from 'react-icons/bs';
-import { BsSearch } from 'react-icons/bs';
-import { BsBell } from 'react-icons/bs';
 import useCurrentUser from "@/hooks/useCurrentUser";
+import { useRouter } from "next/router";
+import { BsBell, BsChevronDown, BsSearch } from 'react-icons/bs';
 
 const TOP_OFFSET = 66;
 
@@ -20,6 +19,7 @@ const images = [
 
 const Navbar = () => {
   const { data: currentUser, isLoading } = useCurrentUser();
+  const router = useRouter();
 
   const defaultImage = images[Math.floor(Math.random() * 4)];
 
@@ -51,6 +51,10 @@ const Navbar = () => {
     setShowAccountMenu((current) => !current);
   }, [])
 
+  const redirectHome = () => {
+    router.push('/');
+  }
+
   return (
     <nav className="w-full fixed z-40">
       <div className={`
@@ -64,7 +68,7 @@ const Navbar = () => {
         duration-500
         ${showBackground ? 'bg-zinc-900 bg-opacity-90' : ''}
         `}>
-        <img className="h-4 lg:h-7" src="/images/logo.png" alt='Logo' />
+        <img className="h-4 lg:h-7 hover:cursor-pointer" src="/images/logo.png" alt='Logo' onClick={redirectHome}/>
         <div className="
           flex-row
           ml-8

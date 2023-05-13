@@ -19,6 +19,10 @@ const AccountMenu: React.FC<AccountMenuProps> = ({ visible }) => {
     router.push('/profiles');
   }
 
+  const adminPanel = () => {
+    router.push('/admin');
+  }
+
   return (
     <div className='bg-black w-56 absolute top-14 right-0 py-3 flex-col border-2 border-gray-800 flex'>
       <div className='flex flex-col'>
@@ -36,6 +40,12 @@ const AccountMenu: React.FC<AccountMenuProps> = ({ visible }) => {
         <div onClick={() => {}} className='px-3 text-left text-white text-sm hover:underline'>
           Account
         </div>
+        {currentUser?.role === 'admin' && ((<hr className='bg-gray-600 border-0 h-px my-3' />))}
+        {currentUser?.role === 'admin' && (
+            <div onClick={adminPanel} className='px-3 text-left text-white text-sm hover:underline'>
+              Admin Panel
+            </div>
+        )}
         <hr className='bg-gray-600 border-0 h-px my-3' />
         <div onClick={() => signOut()} className='px-3 text-right text-white text-sm hover:underline'>
           Sign out of Netflix

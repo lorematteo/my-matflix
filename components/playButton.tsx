@@ -1,18 +1,24 @@
-import React from "react";
 import { useRouter } from "next/router";
+import React from "react";
 
 import { BsFillPlayFill } from "react-icons/bs";
 
 interface PlayButtonProps {
   movieId: string;
+  preview?: boolean;
 }
 
-const PlayButton: React.FC<PlayButtonProps> = ({ movieId }) => {
+const PlayButton: React.FC<PlayButtonProps> = ({ movieId, preview }) => {
   const router = useRouter();
+
+  const playVideo = () => {
+    if(preview) return;
+    router.push(`/watch/${movieId}`);
+  }
 
   return (
     <button 
-    onClick={() => router.push(`/watch/${movieId}`)}
+    onClick={playVideo}
     className="
       bg-white
       rounded-md

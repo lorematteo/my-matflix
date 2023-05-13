@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useState} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { AiOutlineClose } from "react-icons/ai";
 
 import useInfoModal from "@/hooks/useInfoModal";
 import useMovie from "@/hooks/useMovie";
 
-import PlayButton from "./playButton";
-import FavoriteButton from "./favoriteButton";
 import isWeeklyNew from "@/lib/isWekklyNew";
 import { BiVolumeFull, BiVolumeMute } from "react-icons/bi";
+import FavoriteButton from "./favoriteButton";
+import PlayButton from "./playButton";
 
 const MuteButton = ({ muted, mute } : { muted: boolean, mute: () => void }) => {
   return (
@@ -38,20 +38,21 @@ const MuteButton = ({ muted, mute } : { muted: boolean, mute: () => void }) => {
 }
 
 
-
-
-
-
 interface InfoModalProps {
   visible?: boolean;
   onClose: any;
+  previewData?: any;
 }
 
-const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
+const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose, previewData }) => {
   const [isVisible, setIsVisible] = useState(!!visible);
-
   const { movieId } = useInfoModal();
-  const { data = {} } = useMovie(movieId as string);
+  var { data = {} } = useMovie(movieId as string);
+
+  const preview = previewData ? true : false;
+  if(preview){
+    data = previewData;
+  }
 
   const [muted, setMuted] = useState(false);
 
@@ -134,8 +135,8 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
               </p>
               <div className="flex flex-row items-center justify-between right-0">
                 <div className="flex flex-row gap-4 items-center">
-                  <PlayButton movieId={data?.id}/>
-                  <FavoriteButton movieId={data?.id}/>
+                  <PlayButton movieId={data?.id} preview={preview}/>
+                  <FavoriteButton movieId={data?.id} preview={preview}/>
                 </div>
                 <MuteButton muted={muted} mute={mute}/>
               </div>
