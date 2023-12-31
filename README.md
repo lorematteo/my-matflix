@@ -7,6 +7,8 @@ The application offers users a convenient entertainment experience, featuring ef
 
 > In adherence to legal standards, this website exclusively features movie trailers and refrains from utilizing any unlawfully acquired content to ensure compliance with copyright regulations.
 
+<br>
+
 ## ✨ System design
 
 I focused on the system design phase of the project to establish the architecture and design of the software. This phase was pivotal in guaranteeing that the software aligned with the specified requirements and could be implemented efficiently.
@@ -45,3 +47,47 @@ The ERD was a valuable tool for me to visualize the relationships between differ
 
 | ![erd](https://github.com/lorematteo/netflix-clone/assets/114443120/089119c5-dd38-48a7-a0be-ac7c3af25c88) |
 |--|
+
+<br>
+
+## 📄 References
+
+Here are all the amazing resources that helped me make this project a reality. Without them, I wouldn't have been able to create such an awesome app. I'm extremely grateful for all the knowledge, content and services they shared with me !
+
+##### Movies content (trailers, backdrops, logo, data)
+
+- TVdb: https://thetvdb.com/
+- TMDB: https://www.themoviedb.org/
+- iTunes Movie Trailers: https://trailers.apple.com/
+- IMDb: [https://www.imdb.com/](https://www.imdb.com/?ref_=nv_home)
+
+##### Image set hosting service
+
+- imgur: https://imgur.com/
+
+##### Inspiration
+
+- Netflix: [https://www.netflix.com/](https://www.netflix.com/browse)
+
+##### Documentation
+
+- NextJS: https://nextjs.org/docs
+- Tailwind: [https://tailwindcss.com/docs/](https://tailwindcss.com/docs/installation)
+- Prisma: https://www.prisma.io/docs
+- MongoDB: https://www.mongodb.com/docs/
+- NextAuth: https://next-auth.js.org/getting-started/introduction
+- Axios: https://axios-http.com/docs/intro
+- React: https://react.dev/learn
+
+##### General help
+
+- Josh tried coding: https://www.youtube.com/watch?v=yCJH72nZ8DI&ab_channel=Joshtriedcoding
+- Build SaaS with Ethan: https://www.youtube.com/watch?v=2kgqPvs0j_I&t=1947s&ab_channel=BuildSaaSwithEthan
+- StackOverflow: https://stackoverflow.com/
+
+##### Deployment
+
+- Github: https://github.com/
+- Vercel: [https://vercel.com/](https://vercel.com/dashboard)
+- MongoDB: https://www.mongodb.com/
+- Prisma: https://www.prisma.io/
