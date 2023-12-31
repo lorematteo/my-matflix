@@ -91,3 +91,10 @@ Here are all the amazing resources that helped me make this project a reality. W
 - Vercel: [https://vercel.com/](https://vercel.com/dashboard)
 - MongoDB: https://www.mongodb.com/
 - Prisma: https://www.prisma.io/
+
+<br>
+<br>
+
+<p align="center">
+  <img width="375" height="100" src="https://github.com/lorematteo/netflix-clone/assets/114443120/49c72412-a94a-4f22-9a4a-82202d5a149e">
+</p>
