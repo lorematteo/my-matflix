@@ -74,7 +74,7 @@ Here are all the amazing resources that helped me make this project a reality. W
 ##### Documentation
 
 - NextJS: https://nextjs.org/docs
-- Tailwind: [https://tailwindcss.com/docs/](https://tailwindcss.com/docs/installation)
+- Tailwind: https://tailwindcss.com/docs/
 - Prisma: https://www.prisma.io/docs
 - MongoDB: https://www.mongodb.com/docs/
 - NextAuth: https://next-auth.js.org/getting-started/introduction
@@ -83,14 +83,14 @@ Here are all the amazing resources that helped me make this project a reality. W
 
 ##### General help
 
-- Josh tried coding: https://www.youtube.com/watch?v=yCJH72nZ8DI&ab_channel=Joshtriedcoding
-- Build SaaS with Ethan: https://www.youtube.com/watch?v=2kgqPvs0j_I&t=1947s&ab_channel=BuildSaaSwithEthan
+- Josh tried coding: https://www.youtube.com/@joshtriedcoding
+- Sonny Sangha: https://www.youtube.com/@SonnySangha
 - StackOverflow: https://stackoverflow.com/
 
 ##### Deployment
 
 - Github: https://github.com/
-- Vercel: [https://vercel.com/](https://vercel.com/dashboard)
+- Vercel: https://vercel.com/
 - MongoDB: https://www.mongodb.com/
 - Prisma: https://www.prisma.io/
 
