@@ -1,5 +1,7 @@
 ![image](https://github.com/lorematteo/netflix-clone/assets/114443120/6afb56fa-3f51-4f36-8a32-1ae5a20ac3f1)
 
+> [Try Matflix](https://mymatflix.vercel.app/)
+
 ## 🎯 Introduction and Objectives of the project
 The primary objective was to produce a functional prototype of the Netflix website to showcase its feasibility and potential for future development. Working independently, I dedicated effort to ensure the application's ease of use, visual appeal, and integration of essential features like user authentication, a personalized movie list, and an admin panel.
 
